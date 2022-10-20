@@ -1,0 +1,284 @@
+.playerWrapper {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.player {
+  height: 6rem;
+  padding: 0.5rem 1rem;
+  background-color: #0c0b15;
+  box-shadow: 0px 0px 4px 2px rgba(0,0,0,0.83);
+  color: white;
+}
+
+.innerPlayer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  max-width: 670px;
+}
+
+.playActions {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5rem;
+
+  svg {
+    fill: white;
+    transition: fill 0.1s ease;
+  }
+  div {
+    margin-right: 0.3rem;
+    &:active svg {
+      fill: #A63D3F;
+    }
+  }
+}
+
+.loop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 1.4rem;
+  width: 1.4rem;
+  margin-right: 0.5rem;
+  border-radius: 0.7rem;
+  background-color: #141317;
+  svg {
+    fill: white;
+  }
+}
+
+.active {
+  background-color: #A63D3F;
+
+}
+
+.infoWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.3rem;
+}
+
+.songInfo {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.songName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.2rem;
+  font-size: 1rem;
+
+  svg {
+    fill: lightgray;
+    margin-left: 0.5rem;
+    transform: rotate(0deg);
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+.expanded svg {
+  transform: rotate(180deg);
+}
+
+
+.durationWrapper {
+  display: flex;
+  width:100%
+  // align-items: center;
+}
+
+.progressWrapper {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.duration {
+  text-align: right;
+  width: 3rem;
+  font-size: 0.65rem;
+}
+
+.progressbar {
+  height: 0.4rem;
+  width: 100%;
+  border-radius: 3px;
+  background-color: #cfbcbc;
+}
+
+.progress {
+  height: 0.4rem;
+  widtH: 0%;
+  border-radius: 3px;
+  background-color: #A63D3F;
+}
+
+.info {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding: 6rem 1rem 9rem;
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  color: black;
+}
+
+.infoInner {
+  max-width: 670px;
+}
+
+.infoHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: x-large;
+  margin-bottom: 1rem;
+}
+
+.download {
+  display: flex;
+
+  div, a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+    height: 30px;
+    width: 30px;
+    margin-left: 0.5rem;
+    border-radius: 15px;
+    transition: background-color 0.1s ease-in-out;
+    &:active {
+      background-color: rgb(143, 143, 143);
+    }
+  }
+}
+
+.metaInfo {
+  display: flex;
+  font-size: 0.8rem;
+  flex-wrap: wrap;
+  color: black;
+  svg {
+    fill: black;
+    margin-right: 0.3rem;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    padding: 0 1rem;
+    border-left: 1px solid #717171;
+
+    &:first-child {
+      padding-left: 0;
+      border-left: none;
+    }
+  }
+}
+
+.infoTitle {
+  display: flex;
+  align-items: center;
+  svg {
+    fill: black;
+  }
+}
+
+.lyrics {
+  white-space: pre-line; /* or pre-line */
+}
+
+.lyricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.editButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  background-color: lightgray;
+}
+
+.textarea {
+  width: 100%;
+  height: 50vh;
+  margin-bottom: 1rem;
+  padding: 1rem 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 1rem;
+  background-color: #00000018;
+  border-radius: 5px;
+  color: black;
+}
+
+.editButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+.button {
+  padding: 0.5rem 1.5rem;
+  appearance: none;
+  border: none;
+  border-radius: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cancel {
+  background-color: transparent;
+  color: #A63D3F;
+}
+
+.save {
+  background-color: #A63D3F;
+  color: #e7e7e7;
+}
+
+.dark {
+  background-color: #000000e8;
+  color: #d3d3d3;
+  textarea {
+    color: #d3d3d3;
+  }
+  .download svg {
+    fill: black;
+  }
+  .infoTitle svg {
+    fill: #d3d3d3;
+  }
+  .metaInfo {
+    color: #d3d3d3;
+    svg {
+      fill: #d3d3d3;
+    }
+  }
+}
+
+@media screen and (min-width: 701px) {
+  .innerPlayer, .infoInner {
+    margin: 0 auto;
+  }
+  .info {
+    padding-top: 7rem;
+  }
+}

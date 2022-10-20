@@ -1,0 +1,70 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+body {
+  color: white;
+  background: #141317;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: white;
+    background: #141317;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0 2rem;
+}
+
+h1 span {
+  background: linear-gradient(0, #857F99 0 50%, transparent 50% 100%);
+  background-size: 120%;
+  background-repeat: no-repeat;
+  display: inline;
+  padding: 0 1rem 0 0.5rem;
+}
+
+h3 span {
+  background: linear-gradient(0, #857F99 0 50%, transparent 50% 100%);
+  background-size: 120%;
+  background-repeat: no-repeat;
+  display: inline;
+  padding: 0 1rem 0 0.5rem;
+}
+
+
+svg {
+  cursor: pointer;
+}
+
+*:focus {
+  outline: 0;
+  outline: none;
+}
+
+div {
+  -webkit-tap-highlight-color:transparent;
+    -moz-tap-highlight-color:transparent;
+    -o-tap-highlight-color:transparent;
+    tap-highlight-color:transparent;
+}

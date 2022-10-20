@@ -1,0 +1,158 @@
+.musicList {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: .5rem;
+  div:nth-child(2) {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
+  div:last-child {
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+}
+
+.musicEntry {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1px;
+  padding: 0.2rem 0.5rem 0.2rem 0.2rem;
+  background-color: #f7f7f7;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  user-select: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.mainEntry {
+  display: flex;
+}
+
+.more {
+  white-space: pre-line; /* or pre-line */
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  color: transparent;
+  transition: line-height 0.2s ease-in-out, color 0.1s 0.2s ease-in-out;
+}
+
+.show {
+  line-height: 1.1;
+  height: 100%;
+  color: black;
+}
+
+.innerWrapper {
+  position: relative;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-radius: .5rem;
+  background-color: #E7E7E7;
+}
+
+.copyLyrics {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+}
+
+.playIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  height: 45px;
+  width: 45px;
+  margin-right: 0.5rem;
+  background-color: #3e3857;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.playIcon:hover {
+  cursor: pointer;
+}
+
+.playIcon svg {
+  fill: white;
+}
+
+.song {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.duration {
+  font-size: 0.8rem;
+  color: #4d4d4d;
+}
+
+.titleHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.songTitle {
+  flex: 1;
+  cursor: pointer;
+}
+
+.active {
+  background-color: #ff000811;
+  .playIcon {
+    background-color: #A63D40;
+  }
+}
+
+
+@media screen and (min-width: 700px) {
+  .playIcon {
+    height: 55px;
+    width: 55px;
+    margin-right: 1rem;
+  }
+
+  .titleHead {
+    font-size: 1.5rem;
+  }
+  .progress, .progressbar {
+    height: 0.5rem;
+  }
+  .duration {
+    font-size: 1rem;
+  }
+  .playIcon svg {
+    height: 3rem;
+    width: 3rem;
+  }
+}
+
+.dark {
+  background-color: #0000001c;
+  color: #e7e7e7;
+  box-shadow: rgba(160, 160, 160, 0.05) 0px 1px 1px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+  &.active {
+    background-color: #a63d402d;
+    box-shadow: rgba(255, 0, 0, 0.05) 0px 1px 1px 0px, rgba(255, 0, 0, 0.05) 0px 1px 1px 0px;
+  }
+  .duration {
+    color: #e7e7e7;
+  } 
+}

@@ -1,0 +1,148 @@
+.addForm {
+  display: flex;
+  flex-direction: column;
+  label {
+    margin-bottom: 0.2rem;
+    font-size: 0.8rem;
+  }
+  input, select {
+    appearance: none;
+    font-size: 1.2rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: black;
+    border: 2px solid #aaaaaa;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+    &:focus {
+      border-color: #4c4c4c;
+    }
+    &.error {
+      border: 2px solid #A63D3F;
+    }
+  }
+  textarea {
+    width: 100%;
+    min-height: 200px;
+    margin-bottom: 1rem;
+    padding: 1rem 0.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 1rem;
+    color: black;
+    background-color: transparent;
+    border: 2px solid #aaaaaa;
+    border-radius: 5px;
+    &:focus {
+      border-color: #4c4c4c;
+    }
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    div {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    input {
+      width: 100%;
+    }
+  }
+}
+
+.uploadInput {
+  display: none;
+}
+
+.uploadButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem !important;
+  cursor: pointer;
+  font-size: 1.2rem !important;
+  color: black;
+  background-color: transparent;
+}
+
+.songName {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding-left: 0.5rem;
+  border: 2px solid #aaaaaa;
+  border-radius: 5px 0 0 5px;
+  border-right: none;
+  width: 100%;
+}
+
+.uploadIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  width: 80px;
+  background-color: #A63D3F;
+  border-radius: 0 0.2rem 0.2rem 0;
+  svg {
+    fill: #e7e7e7;
+  }
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000c4;
+  color: white;
+}
+
+.saveButton {
+  // position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #A63D3F;
+  color: #e7e7e7;
+  svg {
+    fill: #e7e7e7;
+    animation: spin 1s infinite ease-in-out;
+  }
+}
+
+@keyframes spin {
+  0% {transform: rotate(0deg);}
+  80% {transform: rotate(-360deg);}
+  100% {transform: rotate(-360deg);}
+}
+
+.dark {
+  color: #e7e7e7;
+  input, select, textarea, .songName {
+    color: #e7e7e7;
+    border-color: #4c4c4c;
+    &:focus {
+      border-color: #aaaaaa;
+    }
+    button {
+      background-color: #A63D3F;
+    }
+  }
+}
