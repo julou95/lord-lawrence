@@ -19,7 +19,7 @@ export default function DefaultLayout({ children }) {
   useEffect(() => {
     const isDark = JSON.parse(localStorage.getItem('DARK')) || false
     setDarkmode(isDark)
-    db().collection('lyrics').get().then((data) => {
+    db().collection('songs').get().then((data) => {
       const sorted = [
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
@@ -58,8 +58,8 @@ export default function DefaultLayout({ children }) {
   return (
     <>
       <Head>
-        <title>Side Chick</title>
-        <meta name="description" content="SideChick Jukebox - all our songs and demos" />
+        <title>Cozy</title>
+        <meta name="description" content="Cozy's Jukebox - all our songs and demos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
@@ -70,7 +70,7 @@ export default function DefaultLayout({ children }) {
                 <Image src="/logo.png" alt="logo" className={styles.logoImg} height="96" width="96" />
               </div>
               <div className={styles.title}>
-                Side Chick
+                Cozy
               </div>
             </div>
           </Link>

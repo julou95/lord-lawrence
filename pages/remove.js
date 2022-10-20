@@ -18,7 +18,7 @@ export default function Remove() {
   }, [])
 
   const loadSongs = () => {
-    db().collection('lyrics').get().then((data) => {
+    db().collection('songs').get().then((data) => {
       const sorted = [
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
@@ -45,7 +45,7 @@ export default function Remove() {
   const confirmDelete = () => {
     setIsLoading(true)
     songsToDelete.forEach(song => {
-      db().collection('lyrics').doc(song.id).delete().then(() => {
+      db().collection('songs').doc(song.id).delete().then(() => {
         storage().ref(song.media).delete().then(() => {
           setShowSuccess(true)
           setTimeout(() => {

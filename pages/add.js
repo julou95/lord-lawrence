@@ -46,7 +46,7 @@ export default function Add() {
     if (!hasEmpty) {
       setIsLoading(true)
       storage().ref(file.name).put(file).then((res) => {
-        db().collection('lyrics').doc(file.name.split('.')[0]).set({
+        db().collection('songs').doc(file.name.split('.')[0]).set({
           id: file.name.split('.')[0],
           title: titleRef.current.value,
           type: typeRef.current.value,

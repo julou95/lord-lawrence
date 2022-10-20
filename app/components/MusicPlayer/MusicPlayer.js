@@ -136,7 +136,7 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
   }
 
   const saveNewLyrics = () => {
-    db().collection('lyrics').doc(song.id).set({
+    db().collection('songs').doc(song.id).set({
       ...song,
       text: lyricRef.current.value
     }).then(() => {

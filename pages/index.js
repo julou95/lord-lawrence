@@ -21,7 +21,7 @@ export default function Home() {
   } = useContext(ThemeContext)
 
   useEffect(() => {
-    db().collection('lyrics').get().then((data) => {
+    db().collection('songs').get().then((data) => {
       const sorted = [
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
