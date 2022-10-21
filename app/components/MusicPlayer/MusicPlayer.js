@@ -38,6 +38,8 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
           })
           navigator.mediaSession.setActionHandler('previoustrack', prev)
           navigator.mediaSession.setActionHandler('nexttrack', next)
+          navigator.mediaSession.setActionHandler('seekbackward', () => seek(-10))
+          navigator.mediaSession.setActionHandler('seekforward', () => seek(10))
         }
       })
     }
@@ -84,6 +86,10 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
   const next = () => {
     audioRef.current.currentTime = 0;
     nextSong(song.id)
+  }
+
+  const seek = (amount) => {
+    audioRef.current.currentTime = Math.max(audioRef.current.currentTime + amount, 0)
   }
 
   const onProgress = () => {
