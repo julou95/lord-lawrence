@@ -122,7 +122,7 @@ export default function Add() {
         <select disabled={isLoading} ref={typeRef} name="songType">
           <option value="SONG">Song</option>
           <option value="INST">Instrumental</option>
-          <option value="IDEA">Idea</option>
+          <option value="DEMO">Demo</option>
         </select>
         <label>Lyrics:</label>
         <textarea disabled={isLoading} ref={lyricsRef} />

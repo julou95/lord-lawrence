@@ -1,14 +1,13 @@
-import { useEffect, useState, useContext } from 'react'
+import { useContext } from 'react'
 import Image from 'next/image'
 import MusicList from '@/components/MusicList/MusicList'
-import { db } from '@/constants/firebaseConfig'
 import styles from '@/styles/Home.module.scss'
 import { ThemeContext } from '@/constants/themeContext'
 
 const types = [
   'SONG',
+  'DEMO',
   'INST',
-  'IDEA',
 ]
 
 export default function Home() {
@@ -16,23 +15,8 @@ export default function Home() {
     setCurrentSong,
     currentSong,
     isLoading,
-    setIsLoading,
     songs,
   } = useContext(ThemeContext)
-
-  // useEffect(() => {
-  //   db().collection('songs').get().then((data) => {
-  //     const sorted = [
-  //       ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
-  //       ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
-  //       ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA'),
-  //     ]      
-  //     setTimeout(() => {
-  //       setSongs(sorted)
-  //       setIsLoading(false)
-  //     }, 500)
-  //   })
-  // }, [])
 
   return (
     <>
