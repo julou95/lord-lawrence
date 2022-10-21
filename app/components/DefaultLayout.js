@@ -22,8 +22,8 @@ export default function DefaultLayout({ children }) {
     db().collection('songs').get().then((data) => {
       const sorted = [
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG').sort((a,b) => a.nr - b.nr),
-        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
-        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA'),
+        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST').sort((a,b) => a.nr - b.nr),
+        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA').sort((a,b) => a.nr - b.nr),
       ]
       console.log('LJ - sorted', sorted);
       
