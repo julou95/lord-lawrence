@@ -12,27 +12,27 @@ const types = [
 ]
 
 export default function Home() {
-  const [songs, setSongs] = useState()
   const {
     setCurrentSong,
     currentSong,
     isLoading,
     setIsLoading,
+    songs,
   } = useContext(ThemeContext)
 
-  useEffect(() => {
-    db().collection('songs').get().then((data) => {
-      const sorted = [
-        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
-        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
-        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA'),
-      ]      
-      setTimeout(() => {
-        setSongs(sorted)
-        setIsLoading(false)
-      }, 500)
-    })
-  }, [])
+  // useEffect(() => {
+  //   db().collection('songs').get().then((data) => {
+  //     const sorted = [
+  //       ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
+  //       ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
+  //       ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA'),
+  //     ]      
+  //     setTimeout(() => {
+  //       setSongs(sorted)
+  //       setIsLoading(false)
+  //     }, 500)
+  //   })
+  // }, [])
 
   return (
     <>

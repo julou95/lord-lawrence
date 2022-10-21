@@ -21,10 +21,12 @@ export default function DefaultLayout({ children }) {
     setDarkmode(isDark)
     db().collection('songs').get().then((data) => {
       const sorted = [
-        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
+        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG').sort((a,b) => a.nr - b.nr),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA'),
-      ]      
+      ]
+      console.log('LJ - sorted', sorted);
+      
       setTimeout(() => {
         setSongs(sorted)
         setIsLoading(false)
@@ -109,7 +111,8 @@ export default function DefaultLayout({ children }) {
           setCurrentSong,
           currentSong,
           isLoading,
-          setIsLoading
+          setIsLoading,
+          songs,
         }}>
           {children}
         </ThemeContext.Provider>
