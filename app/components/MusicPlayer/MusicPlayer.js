@@ -30,6 +30,15 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
         sourceRef.current.src = url
         audioRef.current.load()
         audioRef.current.play()
+        if ('mediaSession' in navigator) {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: song.title,
+            artist: 'Cozy',
+            album: 'Chapter I',
+          })
+          navigator.mediaSession.setActionHandler('previoustrack', prev)
+          navigator.mediaSession.setActionHandler('nexttrack', next)
+        }
       })
     }
   }, [song])

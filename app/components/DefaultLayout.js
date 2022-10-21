@@ -67,7 +67,7 @@ export default function DefaultLayout({ children }) {
           <Link href="/">
             <div className={styles.headerLeft} onClick={() => setShowOptions(false)}>
               <div className={styles.logo}>
-                <Image src="/logo.png" alt="logo" className={styles.logoImg} height="96" width="96" />
+                <Image src="/logo-96.png" alt="logo" className={styles.logoImg} height="96" width="96" />
               </div>
               <div className={styles.title}>
                 Cozy
