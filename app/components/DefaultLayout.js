@@ -25,7 +25,6 @@ export default function DefaultLayout({ children }) {
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'DEMO').sort((a,b) => a.nr - b.nr),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST').sort((a,b) => a.nr - b.nr),
       ]
-      
       setTimeout(() => {
         setSongs(sorted)
         setIsLoading(false)
