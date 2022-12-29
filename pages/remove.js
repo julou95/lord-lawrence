@@ -20,6 +20,7 @@ export default function Remove() {
   const loadSongs = () => {
     db().collection('songs').get().then((data) => {
       const sorted = [
+        ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'DEMO'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'SONG'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'INST'),
         ...data.docs.map(doc => doc.data()).filter(entry => entry.type === 'IDEA'),
