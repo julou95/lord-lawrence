@@ -3,12 +3,12 @@ import "firebase/storage";
 import firebase from 'firebase/app';
 
 const config = {
-  apiKey: process.env.API_KEY,
-  authDomain: "cozy-d5e47.firebaseapp.com",
-  projectId: "cozy-d5e47",
-  storageBucket: "cozy-d5e47.appspot.com",
-  messagingSenderId: "250615503268",
-  appId: "1:250615503268:web:f4ef5d727b0e8fbbb30931"
+  apiKey: process.env.NEXT_PUBLIC_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_APP_ID
 }
 
 export const db = () => {
