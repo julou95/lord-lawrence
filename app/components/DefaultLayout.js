@@ -59,8 +59,8 @@ export default function DefaultLayout({ children }) {
   return (
     <>
       <Head>
-        <title>Ownway</title>
-        <meta name="description" content="Ownway's Jukebox - all our songs and demos" />
+        <title>Natyva</title>
+        <meta name="description" content="Natyva's Jukebox - all our songs and demos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>
@@ -71,7 +71,7 @@ export default function DefaultLayout({ children }) {
                 <Image src="/logo-96.png" alt="logo" className={styles.logoImg} height="96" width="96" />
               </div>
               <div className={styles.title}>
-                Ownway
+                Natyva
               </div>
             </div>
           </Link>
