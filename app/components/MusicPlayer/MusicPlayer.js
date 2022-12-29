@@ -33,7 +33,7 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
         if ('mediaSession' in navigator) {
           navigator.mediaSession.metadata = new MediaMetadata({
             title: song.title,
-            artist: 'Cozy',
+            artist: 'Ownway',
             album: 'Chapter I',
           })
           navigator.mediaSession.setActionHandler('previoustrack', prev)
