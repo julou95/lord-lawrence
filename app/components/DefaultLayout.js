@@ -59,7 +59,7 @@ export default function DefaultLayout({ children }) {
   return (
     <>
       <Head>
-        <title>Cozy</title>
+        <title>Lord Lawrence & the Lard Guitar</title>
         <meta name="description" content="Cozy's Jukebox - all our songs and demos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -71,7 +71,7 @@ export default function DefaultLayout({ children }) {
                 <Image src="/logo-96.png" alt="logo" className={styles.logoImg} height="96" width="96" />
               </div>
               <div className={styles.title}>
-                Cozy
+                Lord Lawrence
               </div>
             </div>
           </Link>
