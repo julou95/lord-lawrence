@@ -1,11 +1,15 @@
 import { useState, useRef, useContext } from 'react'
 import { useRouter } from 'next/router'
+import withAuth from '@/auth/withAuth';
 import styles from '@/styles/Add.module.scss'
 import { db, storage } from '@/constants/firebaseConfig'
 import { ThemeContext } from '@/constants/themeContext'
 import Icons from '@/components/Icons/Icons'
+import { ref, uploadBytes } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore/lite";
+import {useUser} from "@/auth/useUser";
 
-export default function Add() {
+const Add = () => {
   const [showModal, setShowModal] = useState(false)
   const [hasError, setHasError] = useState(false)
   const [durationStr, setDurationStr] = useState()
@@ -17,7 +21,7 @@ export default function Add() {
   const lyricsRef = useRef()
   const bpmRef = useRef()
   const noteRef = useRef()
-  const { darkmode } = useContext(ThemeContext)
+  const { darkmode , currentBand} = useContext(ThemeContext)
   const router = useRouter()
 
   const str_pad_left = (string,pad,length) => {
@@ -45,8 +49,9 @@ export default function Add() {
 
     if (!hasEmpty) {
       setIsLoading(true)
-      storage().ref(file.name).put(file).then((res) => {
-        db().collection('songs').doc(file.name.split('.')[0]).set({
+      uploadBytes(ref(storage, file.name), file).then((snapshot) => {
+        setDoc(doc(db, 'songs', file.name.split('.')[0]), {
+          bandID: currentBand.bandID,
           id: file.name.split('.')[0],
           title: titleRef.current.value,
           type: typeRef.current.value,
@@ -56,7 +61,7 @@ export default function Add() {
           bpm: bpmRef.current.value || '-',
           note: noteRef.current.value || '-',
           date: dateStr,
-        }).then(() => {
+        }).then((res) => {
           titleRef.current.value = ''
           typeRef.current.value = ''
           songRef.current.value = ''
@@ -68,12 +73,9 @@ export default function Add() {
           setTimeout(() => {
             router.push('/')
           }, 1000)
-        }).catch(err => {
-          console.log('LJ - ', 'error', err);
         })
-      }).catch((err) => {
-        console.log('LJ - ', 'error', err);
       })
+
     } else {
       setHasError(true)
     }
@@ -109,7 +111,7 @@ export default function Add() {
       <h1><span>New Song</span></h1>
       <div className={`${styles.addForm} ${darkmode ? styles.dark : ''}`}>
         <label>Song:</label>
-        <label for="file-upload" className={`${styles.uploadButton} ${isLoading ? styles.disabled : ''}`}>
+        <label htmlFor="file-upload" className={`${styles.uploadButton} ${isLoading ? styles.disabled : ''}`}>
             <div className={styles.songName}>
               {!!fileName ? fileName : 'Select File'}
             </div>
@@ -123,6 +125,7 @@ export default function Add() {
           <option value="SONG">Song</option>
           <option value="INST">Instrumental</option>
           <option value="DEMO">Demo</option>
+          <option value="IDEA">Idea</option>
         </select>
         <label>Lyrics:</label>
         <textarea disabled={isLoading} ref={lyricsRef} />
@@ -141,3 +144,5 @@ export default function Add() {
     </>
   )
 }
+
+export default withAuth(Add)

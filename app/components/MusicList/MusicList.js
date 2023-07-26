@@ -5,6 +5,7 @@ const types = {
   INST: 'Instrumentals',
   SONG: 'Songs',
   DEMO: 'Demos',
+  IDEA: 'Ideas',
 }
 
 export default function MusicList({ type, songs = [], setCurrentSong, currentSong }) {

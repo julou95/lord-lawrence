@@ -3,6 +3,8 @@ import styles from '@/styles/MusicPlayer.module.scss'
 import Icons from '../Icons/Icons'
 import { useRouter } from 'next/router';
 import { db, storage } from '@/constants/firebaseConfig'
+import { ref, getDownloadURL } from "firebase/storage";
+
 
 export default function MusicList({ song, prevSong, nextSong, darkmode }) {
   const [isPlaying, setIsPlaying] = useState(false)
@@ -25,7 +27,7 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
     if (song) {
       setIsPlaying(true)
       setNewLyrics(song.text || '...')
-      storage().ref(song.media).getDownloadURL().then((url) => {
+      getDownloadURL(ref(storage, song.media)).then((url) => {
         setDlURL(url)
         sourceRef.current.src = url
         audioRef.current.load()
@@ -42,6 +44,7 @@ export default function MusicList({ song, prevSong, nextSong, darkmode }) {
           navigator.mediaSession.setActionHandler('seekforward', () => seek(10))
         }
       })
+
     }
   }, [song])
 
