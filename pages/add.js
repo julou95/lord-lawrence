@@ -7,7 +7,6 @@ import { ThemeContext } from '@/constants/themeContext'
 import Icons from '@/components/Icons/Icons'
 import { ref, uploadBytes } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore/lite";
-import {useUser} from "@/auth/useUser";
 
 const Add = () => {
   const [showModal, setShowModal] = useState(false)
@@ -21,7 +20,7 @@ const Add = () => {
   const lyricsRef = useRef()
   const bpmRef = useRef()
   const noteRef = useRef()
-  const { darkmode , currentBand} = useContext(ThemeContext)
+  const { darkmode , band} = useContext(ThemeContext)
   const router = useRouter()
 
   const str_pad_left = (string,pad,length) => {
@@ -50,8 +49,8 @@ const Add = () => {
     if (!hasEmpty) {
       setIsLoading(true)
       uploadBytes(ref(storage, file.name), file).then((snapshot) => {
-        setDoc(doc(db, 'songs', file.name.split('.')[0]), {
-          bandID: currentBand.bandID,
+        setDoc(doc(db, 'songs', file.name.split('.')[0]+band.bandID), {
+          bandID: band.bandID,
           id: file.name.split('.')[0],
           title: titleRef.current.value,
           type: typeRef.current.value,

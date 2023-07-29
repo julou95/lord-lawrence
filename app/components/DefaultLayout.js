@@ -10,6 +10,7 @@ import { query, collection, getDocs, orderBy, where } from 'firebase/firestore/l
 import { useUser } from '@/auth/useUser';
 
 import { ThemeContext } from '@/constants/themeContext'
+import {useRouter} from "next/router";
 
 export default function DefaultLayout({ children }) {
   const [darkmode, setDarkmode] = useState(true)
@@ -17,8 +18,7 @@ export default function DefaultLayout({ children }) {
   const [currentSong, setCurrentSong] = useState()
   const [songs, setSongs] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [currentBand, setCurrentBand] = useState()
-  const [bands, setBands] = useState([])
+  const [band, setBand] = useState({})
   const { user, logout } = useUser();
 
   useEffect(() => {
@@ -27,45 +27,46 @@ export default function DefaultLayout({ children }) {
   }, [])
 
   useEffect(() => {
-    if (user && !bands.length) {
+    if (user && !band.name) {
       const getUserBands = async () => await getBandsFromFS()
       getUserBands()
     }
   }, [user])
 
   useEffect(() => {
-    if (!currentBand?.bandID && bands.length) {
-      setCurrentBand(bands[0])
+    if (user) {
+      if (band.name) {
+        const getUserSongs = async () => await getSongs()
+        getUserSongs()
+      } else {
+        setTimeout(() => setIsLoading(false), 500)
+      }
     }
-    if (user && bands.length && currentBand?.bandID) {
-      const getUserSongs = async () => await getSongs(currentBand?.bandID)
-      getUserSongs()
-    } else {
-      setTimeout(() => {
-        setIsLoading(false)
-      }, 500)
+  }, [band])
+
+  useEffect(() => {
+    if (songs.length) {
+      setIsLoading(false)
     }
-  }, [bands])
+  }, [songs])
 
   const getBandsFromFS = async () => {
-    const bandsArr = []
+    let currband;
     const userBands = await getDocs(query(collection(db, 'bands'), where('userID', '==', user?.id)))
     userBands.forEach((entry) => {
-      bandsArr.push(entry.data())
+      currband = entry.data()
     })
-    setBands(bandsArr)
-    setCurrentBand(bandsArr[0])
-    return bandsArr
+    setBand(currband)
+    return currband
   }
 
-  const getSongs = async (bandID) => {
+  const getSongs = async () => {
     const fetchedList = []
-    const fetchedSongs = await getDocs(query(collection(db, 'songs'), where('bandID', '==', bandID)))
+    const fetchedSongs = await getDocs(query(collection(db, 'songs'), where('bandID', '==', band.bandID), orderBy('type', 'desc')))
     fetchedSongs.forEach((song) => {
       fetchedList.push(song.data())
     })
     setSongs(fetchedList)
-    setIsLoading(false)
     return fetchedList
   }
 
@@ -98,7 +99,7 @@ export default function DefaultLayout({ children }) {
   }
 
   const getCurrentBandName = () => {
-    return bands?.find((band) => band.bandID === currentBand?.bandID)?.name || 'Jukebox'
+    return band?.name || 'Jukebox'
   }
 
   return (
@@ -157,10 +158,10 @@ export default function DefaultLayout({ children }) {
           isLoading,
           setIsLoading,
           songs,
-          currentBand,
-          bands,
+          band,
+          user,
         }}>
-          {children}
+          {!isLoading ? children : <div className={styles.loading}><Image src="/loading.gif" height="200" width="210" alt="loading" /></div>}
         </ThemeContext.Provider>
       </main>
       {

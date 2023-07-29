@@ -10,8 +10,12 @@
   width: 100%;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
-  border: none;
+  border: 2px solid transparent;
   border-radius: 0.3rem;
+
+  &.error {
+    border-color: #A63D3F;
+  }
 }
 
 .signinButton {
@@ -26,9 +30,35 @@
   border-radius: 0.3rem;
   background-color: #A63D3F;
   color: #e7e7e7;
+  cursor: pointer;
+  &:active {
+    background-color: #8d3637;
+  }
 }
 
 .registerLink {
+  padding: 0.5rem;
   text-align: center;
+  color: black;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(12, 11, 21, 0.09);
+  }
+}
+
+.errorBox {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  background-color: rgba(166, 61, 63, 0.27);
+  color: #8d3637;
+}
+
+.dark {
   color: white;
+  &:hover {
+    background-color: rgba(166, 61, 63, 0.27);
+  }
 }

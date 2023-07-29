@@ -51,7 +51,7 @@ const useUser = () => {
             return;
         }
         setUser(userFromCookie);
-        return () => cancelAuthListener;
+        return () => cancelAuthListener();
     }, []);
 
     return { user, logout };
