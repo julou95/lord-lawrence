@@ -42,7 +42,7 @@ const  Home = () => {
   return (
     <>
       {
-        !band ?
+        user?.id && !band ?
           <>
             <h1><span>Band hinzufügen</span></h1>
             <input className={styles.inputName} ref={bandNameRef} type={'text'} placeholder={'Bandname'} />
@@ -50,7 +50,7 @@ const  Home = () => {
           </> : <></>
       }
       {
-        band && !songs.length ?
+        user?.id && band && !songs.length ?
           <div className={styles.noSongs}>
             <h2><span>Ooops...</span></h2>
             There were no Songs found for your Band.

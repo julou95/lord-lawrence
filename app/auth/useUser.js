@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import {
+    onAuthStateChanged,
+} from 'firebase/auth';
 import { auth } from '@/constants/firebaseConfig';
 
 import {
@@ -35,7 +38,7 @@ const useUser = () => {
     };
 
     useEffect(() => {
-        const cancelAuthListener = auth.onIdTokenChanged(async userToken => {
+        const cancelAuthListener = () => auth.onIdTokenChanged(async userToken => {
                 if (userToken) {
                     const userData = await mapUserData(userToken);
                     setUserCookie(userData);

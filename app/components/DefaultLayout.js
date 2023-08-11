@@ -161,7 +161,7 @@ export default function DefaultLayout({ children }) {
           band,
           user,
         }}>
-          {!isLoading ? children : <div className={styles.loading}><Image src="/loading.gif" height="200" width="210" alt="loading" /></div>}
+          {!isLoading || !user?.id ? children : <div className={styles.loading}><Image src="/loading.gif" height="200" width="210" alt="loading" /></div>}
         </ThemeContext.Provider>
       </main>
       {

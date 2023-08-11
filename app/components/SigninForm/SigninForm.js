@@ -3,6 +3,7 @@ import router from 'next/router';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 import { auth } from '@/constants/firebaseConfig'
 import styles from '@/styles/Signin.module.scss'
+import Icons from "@/components/Icons/Icons";
 
 const SigninForm = ({ type = 'login' }) => {
     const emailRef = useRef()
@@ -10,6 +11,7 @@ const SigninForm = ({ type = 'login' }) => {
     const [pwError, setPwError] = useState(false)
     const [mailError, setMailError] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
+    const [loadingState, setLoadingState] = useState(false)
 
     const signIn = (e) => {
         e.preventDefault()
@@ -18,14 +20,17 @@ const SigninForm = ({ type = 'login' }) => {
             setPwError(!passwordRef.current.value)
             setErrorMessage('Felder müssen ausgefüllt sein')
         } else {
+            setLoadingState(true)
             if (type === 'login') {
                 signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
                     .then((userCredentials) => {
                         setMailError(false)
                         setPwError(false)
+                        setLoadingState(false)
                         router.push('/')
                     })
                     .catch((error) => {
+                        setLoadingState(false)
                         setErrorCodes(error)
                     });
             } else {
@@ -33,9 +38,11 @@ const SigninForm = ({ type = 'login' }) => {
                     .then((userCredentials) => {
                         setMailError(false)
                         setPwError(false)
+                        setLoadingState(false)
                         router.push('/')
                     })
                     .catch((error) => {
+                        setLoadingState(false)
                         setErrorCodes(error)
                     });
             }
@@ -53,6 +60,9 @@ const SigninForm = ({ type = 'login' }) => {
             setPwError(true)
             setMailError(true)
         }
+    }
+    const buttonText = () => {
+        return type === 'login' ? 'Login' : 'Registrieren'
     }
     return (
         <>
@@ -77,7 +87,9 @@ const SigninForm = ({ type = 'login' }) => {
                     pwError || mailError
                         ? <div className={styles.errorBox}>{errorMessage}</div>
                         : <></>}
-                <input type={'submit'} className={styles.signinButton} onClick={signIn} value={'Login'} />
+                <button type={'submit'} className={styles.signinButton} onClick={signIn}>
+                    {loadingState ? <Icons name="loading" size="30" /> : buttonText()}
+                </button>
             </form>
         </>
     )
