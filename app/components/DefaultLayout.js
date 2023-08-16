@@ -27,7 +27,7 @@ export default function DefaultLayout({ children }) {
   }, [])
 
   useEffect(() => {
-    if (user && !band.name) {
+    if (user && !band?.name) {
       const getUserBands = async () => await getBandsFromFS()
       getUserBands()
     }
@@ -35,7 +35,7 @@ export default function DefaultLayout({ children }) {
 
   useEffect(() => {
     if (user) {
-      if (band.name) {
+      if (band?.name) {
         const getUserSongs = async () => await getSongs()
         getUserSongs()
       } else {
@@ -67,6 +67,9 @@ export default function DefaultLayout({ children }) {
       fetchedList.push(song.data())
     })
     setSongs(fetchedList)
+    if (!fetchedList.length) {
+      setTimeout(() => setIsLoading(false), 500)
+    }
     return fetchedList
   }
 
@@ -105,8 +108,8 @@ export default function DefaultLayout({ children }) {
   return (
     <>
       <Head>
-        <title>Lord Lawrence & the Lard Guitar</title>
-        <meta name="description" content="Lord Lawrence's Jukebox - all our songs and demos" />
+        <title>Shookbox</title>
+        <meta name="description" content="Shookbox - all our songs and demos" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header className={styles.header}>

@@ -38,7 +38,7 @@ const useUser = () => {
     };
 
     useEffect(() => {
-        const cancelAuthListener = () => auth.onIdTokenChanged(async userToken => {
+        const cancelAuthListener = auth.onIdTokenChanged(async userToken => {
                 if (userToken) {
                     const userData = await mapUserData(userToken);
                     setUserCookie(userData);
@@ -54,7 +54,7 @@ const useUser = () => {
             return;
         }
         setUser(userFromCookie);
-        return () => cancelAuthListener();
+        return () => cancelAuthListener;
     }, []);
 
     return { user, logout };
