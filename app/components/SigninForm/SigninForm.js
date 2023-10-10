@@ -24,10 +24,12 @@ const SigninForm = ({ type = 'login' }) => {
             if (type === 'login') {
                 signInWithEmailAndPassword(auth, emailRef.current.value, passwordRef.current.value)
                     .then((userCredentials) => {
-                        setMailError(false)
-                        setPwError(false)
-                        setLoadingState(false)
-                        router.push('/')
+                        setTimeout(() => {
+                            setMailError(false)
+                            setPwError(false)
+                            setLoadingState(false)
+                            router.push('/')
+                        }, 500)
                     })
                     .catch((error) => {
                         setLoadingState(false)

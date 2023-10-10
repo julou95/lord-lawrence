@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, createContext } from 'react';
 import router from 'next/router';
 import { auth } from '@/constants/firebaseConfig';
+import DefaultLayout from "@/components/DefaultLayout";
 
 export const AuthContext = createContext({});
 export const useAuthContext = () => useContext(AuthContext)
@@ -22,7 +23,9 @@ const withAuth = Component => props => {
 
     return (
         <AuthContext.Provider value={{ user }}>
-            <Component {...props} />
+            <DefaultLayout>
+                <Component {...props} />
+            </DefaultLayout>
         </AuthContext.Provider>
     )
 };

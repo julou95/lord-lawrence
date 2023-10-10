@@ -175,6 +175,13 @@
   background-color: #e7e7e7;
 }
 
+.noSongs {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #e7e7e7;
+}
 
 @media screen and (min-width: 701px) {
   .main, .innerHeader, .innerPlayer, .optionsInner {
