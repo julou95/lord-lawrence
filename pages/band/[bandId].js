@@ -74,6 +74,7 @@ export async function getStaticProps({ params }) {
             bandName: bandName || '',
             songs: fetchedList.filter(song => song.type === 'SONG'),
         },
+        revalidate: 60,
     };
 }
 
